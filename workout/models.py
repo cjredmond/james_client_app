@@ -10,8 +10,8 @@ MUSCLE_GROUPS = [('q', 'quads'), ('h', 'hamstrings'), ('c', 'calves'), ('a', 'ab
                  ('t', 'triceps'), ('m', 'mobility')]
 class Exercise(models.Model):
     workout = models.ForeignKey(Workout)
-    name = models.CharField()
+    name = models.CharField(max_length=40)
     muscle_group = models.CharField(max_length=1,choices=MUSCLE_GROUPS)
     sets = models.CharField(max_length=10)
     reps = models.CharField(max_length=10)
-    notes = models.CharField(max_length=100,null=True,Blank=True)
+    notes = models.CharField(max_length=100,null=True,blank=True)
