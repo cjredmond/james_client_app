@@ -2,4 +2,16 @@
 {% block content %}
 <h1>{{ account.user.username }}</h1>
 
+
+{% for workout in account.workout_list %}
+{% include 'partials/_workout_format.html' %}
+{% endfor %}
+{{ account.workout_list }}
+
+<hr>
+{% if request.user.account.client == False %}
+{% include 'partials/_trainer_account.html' %}
+<hr>
+{% include 'partials/_trainer_create_workout.html' %}
+{% endif %}
 {% endblock %}

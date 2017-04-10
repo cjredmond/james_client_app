@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    Trainer stuff <br>
+    {% for client in clients %}
+    <a href="{% url 'account_detail_view' client.id%}">{{ client.user.username }}</a><br>
+    {% endfor %}
+  </body>
+</html>
