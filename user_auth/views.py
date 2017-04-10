@@ -4,6 +4,8 @@ from django.views.generic import DetailView
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 from django.urls import reverse
+from django.http import HttpResponseRedirect
+from django.contrib.auth.decorators import login_required
 from user_auth.models import Account
 from workout.models import Workout
 
@@ -19,3 +21,9 @@ class AccountDetailView(DetailView):
         context = super().get_context_data(**kwargs)
         context['clients'] = Account.objects.filter(client=True)
         return context
+
+@login_required
+def home(request):
+    return HttpResponseRedirect(
+            reverse('account_detail_view',
+                args=[request.user.account.id]))

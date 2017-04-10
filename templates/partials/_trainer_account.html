@@ -5,9 +5,19 @@
     <title></title>
   </head>
   <body>
-    Trainer stuff <br>
-    {% for client in clients %}
-    <a href="{% url 'account_detail_view' client.id%}">{{ client.user.username }}</a><br>
-    {% endfor %}
+    <div class="col-md-4">
+      Trainer stuff <br>
+      {% for workout in account.workout_list %}
+      {% include 'partials/_workout_format.html' %}
+      {% endfor %}
+      <hr>
+      <a href="{% url 'workout_create_view' account.id %}">New Workout</a>
+    </div>
+    <div class="col-md-6">
+      {% for client in clients %}
+      <a href="{% url 'account_detail_view' client.id%}">{{ client.user.username }}</a><br>
+      {% endfor %}
+    </div>
+
   </body>
 </html>

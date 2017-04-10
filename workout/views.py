@@ -6,7 +6,7 @@ from user_auth.models import Account
 class WorkoutCreateView(CreateView):
     model = Workout
     success_url = "/"
-    fields = ('day', 'info')
+    fields = ('name', 'info')
     def form_valid(self,form,**kwargs):
         instance = form.save(commit=False)
         target = Account.objects.get(id=self.kwargs['pk'])
