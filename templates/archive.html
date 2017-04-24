@@ -1,0 +1,8 @@
+{% extends 'base.html' %}
+{% block content %}
+
+  {% for workout in workouts %}
+    {% include 'partials/_workout_format.html'%}
+    {{ workout.time }}
+  {% endfor %}
+{% endblock %}

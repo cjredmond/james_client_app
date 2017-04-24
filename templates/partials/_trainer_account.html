@@ -8,9 +8,15 @@
     <div class="col-md-4">
       {% for workout in account.workout_list %}
       {% include 'partials/_workout_format.html' %}
+
+      <form class="" action="{% url 'workout_archive_view' workout.id %}" method="post">
+        {% csrf_token %}
+        <input type="submit" name="" value="Archive">
+      </form>
       {% endfor %}
       <hr>
       <a href="{% url 'workout_create_view' account.id %}">New Workout</a>
+      <a href="{% url 'account_archived_view' account.id  %}">Archived Workouts</a>
     </div>
     <div class="col-md-6">
       <h2>All Clients</h2>

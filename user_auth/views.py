@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.views.generic.edit import CreateView
-from django.views.generic import DetailView
+from django.views.generic import DetailView, TemplateView
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 from django.urls import reverse
@@ -27,3 +27,20 @@ def home(request):
     return HttpResponseRedirect(
             reverse('account_detail_view',
                 args=[request.user.account.id]))
+
+class AccountArchivedWorkoutView(TemplateView):
+    template_name = "archive.html"
+
+    def get_context_data(self,**kwargs):
+        context = super().get_context_data(**kwargs)
+        target = Account.objects.get(id=self.kwargs['pk'])
+        context['workouts'] = Workout.objects.filter(archive=True,account=target)
+        return context
+
+
+
+    # def get_context_data(self, **kwargs):
+    #     context = super().get_context_data(**kwargs)
+    #     target = Account.objects.get(id=self.kwargs['pk'])
+    #     context['workouts'] = Workout.objects.filter(archive=True,account=target)
+    #     return context
